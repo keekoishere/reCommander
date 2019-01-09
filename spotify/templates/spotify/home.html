@@ -1,0 +1,236 @@
+{% extends 'spotify/layout.html' %}
+
+{% block content %}
+	<script type="text/javascript">
+		// so I can make the header active when I'm on this html
+        var headerhome = document.getElementById("homeheader")
+        headerhome.setAttribute('class', 'nav-link active')
+
+        $(document).ready(function() {
+            
+            //dataTables to generate sorted tables etc.
+            $.fn.dataTable.moment( 'D/M/YYYY' ); //first I need to switch the date type to sort
+            $('#recommends').DataTable({
+                "order": [[ 2, "desc" ]], // more recent first
+                dom: '<"ButtonStuff"B><"FilterStuff">tfp', //letters are the position of the elements
+                
+            });
+            $('#recommendsout').DataTable({
+                "order": [[ 2, "desc" ]], // more recent first
+                dom: '<"ButtonStuff"B><"FilterStuff">tfp'
+            });
+        
+        });
+   	function showFunction(){
+            var x = document.getElementById("col1");
+            var w = document.getElementById("col2");
+
+            
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                w.style.display = "block";
+                y.innerHTML = ("Hide History");
+            }
+            else {
+                x.style.display = "none";
+                w.style.display = "none";
+                y.innerHTML = ("Show History");
+
+            }
+        }
+    	function changeperm(){
+            $.get('/changeperm')
+            var y = document.getElementById("allow");
+            if (y.innerHTML == "Block other users from peeking your history"){
+            	y.innerHTML = "Allow other users to peek your history";
+            }
+            else {
+            	y.innerHTML = "Block other users from peeking your history"
+            }
+            y.classList.toggle('active')
+           }
+            
+	</script>
+
+
+<div class="row" style="padding-top:20px padding-bottom: 40px">
+
+	<div class="col-4" style="padding-right: 40px" >
+		<div class="row">
+			<h2 style="padding-bottom: 10px"><img id="userimage" src={{userinfo.image }} alt=userimage> {{ userinfo.user }}</h2>
+		</div>
+		<div class="row align-items-start">
+			<div class="col-4 align-self-start">
+				<button id="show" class="hkfont btn btn-outline-secondary" onclick="showFunction()">User info</button>
+			</div>
+			<div class="col align-self-center"></div>
+
+			<div class="col-6 align-self-end">
+
+			{% if userinfo.historyperm == True %}
+				<div class="row">
+					<button id="allow" class="hkfont btn btn-outline-secondary active" onclick="changeperm()">Share history</button>
+				</div>
+				<div class="row"> 
+					Currently: Blocking
+				</div>
+				
+			{% else %}		
+				<div class="row">
+					<button id="allow" class="hkfont btn btn-outline-secondary" onclick="changeperm()">Block history</button>
+				</div>
+				<div class="row" style="padding-left: 5px"> 
+					(Currently: Sharing)
+				</div>
+				
+				
+				
+			{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-3" id="col2" style="display: none">
+		<table>		
+		<caption style="caption-side:top">Your top artists for the last month</caption>
+			<tr>
+				<td><img id="topartist" src={{topartists.items.0.images.1.url}} alt=userimage>{{topartists.items.0.name}}
+				</td>
+				<td><img id="topartist" src={{topartists.items.1.images.1.url}} alt=userimage>{{topartists.items.1.name}}
+			</tr>
+			<tr>
+				<td style="padding-top:10px"><img id="topartist" src={{topartists.items.2.images.1.url}} alt=userimage>{{topartists.items.2.name}}
+				</td>
+				<td><img id="topartist" src={{topartists.items.3.images.1.url}} alt=userimage>{{topartists.items.3.name}}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-5" id="col1" style="display: none">
+		<table cellspacing="10">
+		<caption style="caption-side:top; text-align: center">Your top 6 tracks for the last month</caption>
+			<tr>
+				<td><img id="spotimage" src={{toptracks.items.0.album.images.1.url}} alt=userimage>{{toptracks.items.0.artists.0.name}} - {{toptracks.items.0.name}}</td>
+				<td><img id="spotimage" src={{toptracks.items.1.album.images.1.url}} alt=userimage>{{toptracks.items.1.artists.0.name}} - {{toptracks.items.1.name}}</td>
+				<td><img id="spotimage" src={{toptracks.items.2.album.images.1.url}} alt=userimage>{{toptracks.items.2.artists.0.name}} - {{toptracks.items.2.name}}</td>
+
+			</tr>
+			<tr>
+				<td style="padding-top:10px"><img id="spotimage" src={{toptracks.items.3.album.images.1.url}} alt=userimage>{{toptracks.items.3.artists.0.name}} - {{toptracks.items.3.name}}</td>
+				<td><img id="spotimage" src={{toptracks.items.4.album.images.1.url}} alt=userimage>{{toptracks.items.4.artists.0.name}} - {{toptracks.items.4.name}}</td>
+				<td><img id="spotimage" src={{toptracks.items.5.album.images.1.url}} alt=userimage>{{toptracks.items.5.artists.0.name}} - {{toptracks.items.5.name}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+
+<div class="row" style="padding-top: 20px">
+	<div class="col-5">
+		<table class="table table-striped table-hover" id="recommends" >
+		<caption class="hkfont" style="box-shadow: 0px 0px 10px #f0ad4e; border-style: solid; border-color: white;padding-left: 10px; border-left-color: #f0ad4e; font-size: 32px; caption-side:top">THEY WANT YOU TO LISTEN</caption>
+		<thead class="thead-dark hkfont">
+		<tr>
+			<th>From User</th>
+			<th>Music</th>
+			<th>Date</th>
+			<th>Rec Info</th>
+		</tr>
+		</thead>
+		{% for received, receivedrecs, durations in receivedt %}
+			<tr>
+			
+				<td>{{received.recmander}} <img id="tableimage" src="{{received.recmander.image}}"></td>
+				<td>{{receivedrecs.artists.0.name}} - {{receivedrecs.name}} {% if received.tipo == 'track' %} ({{durations}}) {% endif %}</td>	
+				<td>{{received.recdate|date:"d/m/Y"}}</td>
+				<td>
+											
+				<button class="btn btn-outline-secondary" onClick='location.href="/listentothis/{{received.genurl}}"'> Check it out </button>
+					
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<div class="col">
+		<table class="table table-striped table-hover" id="recommendsout">
+		<caption class="hkfont" style="box-shadow: 0px 0px 10px #f0ad4e; border-style: solid; border-color: white;padding-left: 10px; border-left-color: #f0ad4e;   font-size: 32px; caption-side:top">WHAT THEY THOUGHT ABOUT YOURS</caption>
+		<thead class="thead-dark hkfonttable">
+			<tr>
+				<th>Music</th>
+				<th>To User</th>
+				<th>Date</th>
+				<th>Status</th>
+				<th>Like</th>
+				<th>Listens</th>
+				<th>Answer</th>
+			</tr>
+		</thead>
+		{% for recdados, musicrecdados, durations in recdadost %}
+	
+			{% if recdados.prova == True %}
+			<tr class="table-success">
+			
+			{% elif recdados.liked == True %}
+			<tr class="table-success">
+			
+			{% elif recdados.answer != Null %}
+			<tr class="table-success">
+			
+			{% else %}
+			<tr>
+			
+			{% endif %}
+
+			<td>{{musicrecdados.artists.0.name}} - {{musicrecdados.name}} {% if recdados.tipo == 'track' %} ({{durations}}) {%else%}(Album){% endif %}</td>
+			
+			<td>{{recdados.recdado}} <img id="tableimage" src="{{recdados.recdado.image}}"></td>
+			<td>{{recdados.recdate|date:"d/m/Y"}}</td>
+			
+			{% if recdados.visto == True %}
+			<td>Seen</td>
+			
+			{% else %}
+			<td></td>
+			
+			{% endif %}
+
+			{% if recdados.liked == True %}
+			<td>Liked</td>
+			
+			{% else %}
+			<td></td>
+			
+			{% endif %}
+
+			{% if recdados.top == True %}
+			<td>Top of the Month</td>
+			
+			{% elif recdados.prova == True %}
+			<td>Played (recently)</td>
+		
+			{% else %}
+			<td></td>
+			
+			{% endif %}
+
+			{% if recdados.answer != Null %}
+			<form action='/answer' id='answerform' name='answerform' method="POST">
+				<input type="hidden" name="recdados" value="{{recdados.id}}">
+				<input type="hidden" name="answermusic" value="{{musicrecdados.external_urls.spotify}}">
+				<td><button type="submit" class="btn btn-outline-secondary" value="submit">{% csrf_token %}Answer</button></td></form>
+			
+			{% else %}
+				<td></td>
+			
+			{% endif %}
+			</tr>
+
+			{% endfor %}
+		</table>
+	</div>
+</div>
+
+{% endblock %}

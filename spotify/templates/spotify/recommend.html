@@ -1,0 +1,34 @@
+{% extends 'spotify/layout.html' %}
+
+{% block content %}
+
+
+<!-- script so I can highlight where I am in the headers from layout -->
+  <script type="text/javascript">
+    var headerrec = document.getElementById("recheader")
+    headerrec.setAttribute('class', 'nav-link active')
+  </script>
+  <div class="divcenterrec" align="middle">
+  <h2>Search music on Spotify</h2><h4>(Album or track)</h4>
+ 
+  <input type="text" class="form-control" style="width: 700px;" name="q" id="q" placeholder="Search..." data-provide="typeahead"/>
+</div>
+
+
+
+  <div class="divcenterrec" id="displayrec"> </div>
+  <div class="divcenterrec" id="sug">
+
+  <form action='/listento' id='sugform' name='sugform' method='POST'>
+   
+    {% csrf_token %}
+
+    
+  
+  </div>
+  <div id="genurl"></div>
+    
+ 
+
+
+{% endblock %}

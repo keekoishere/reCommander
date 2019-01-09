@@ -1,0 +1,16 @@
+{% extends 'spotify/layout.html' %}
+
+{% block content %}
+<div class="container">
+<div align="center">Since your spotify profile doesn't have any display name (dude.), we need you to give us one to sort you in our database:
+(IF THAT USER ALREADY EXISTS AND IT'S NOT YOUR ACCOUNT, YOU'LL GET REDIRECTED TO LOGIN)
+</div>
+<div align="center">
+<form action='/login' method='POST' id='newusername'>{% csrf_token %}
+	<input type= 'text' name='newusername' placeholder='Username!'>
+	
+	<button class="btn btn-outline-secondary" type='submit'> This is my username</button>
+</form>
+</div>
+</div>
+{% endblock %} 
