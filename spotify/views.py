@@ -7,14 +7,14 @@ from django.contrib import messages
 import json
 import os
 import sys
-import spotipy
-import math
-from spotipy import oauth2
 import string
 import random
 import requests
 import spotipy.util as util
 import time
+import spotipy
+import math
+from spotipy import oauth2
 
 from .models import Username, Recommend, Answer
 
