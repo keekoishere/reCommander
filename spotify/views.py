@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib import messages
-import oauth2
 import json
 import os
 import sys
