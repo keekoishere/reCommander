@@ -28,8 +28,8 @@ SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
 # My app info
 SPOTIPY_REDIRECT_URI = "https://recspotify.herokuapp.com/callback"
 #SPOTIPY_REDIRECT_URI = "http://127.0.0.1:8000/callback"
-SPOTIPY_CLIENT_SECRET = "845a2dac89cb4959ad0cf21aa50ecbdd"
-SPOTIPY_CLIENT_ID = "e87a2b33da8e48458862912c45f60492"
+SPOTIPY_CLIENT_SECRET = ""
+SPOTIPY_CLIENT_ID = ""
 access_token = ""
 
 # scopes I want to ask the user access for
