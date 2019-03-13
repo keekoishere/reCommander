@@ -1,0 +1,18 @@
+{% extends 'network/layout.html' %}
+
+{% block content %}
+<body class="text-center" style="background: no-repeat center center fixed; background-image:url('/static/network/images/tapeforcover.jpg'); ; background-size: cover; background-repeat: no-repeat;"> 
+<div class="container">
+<div align="center"><h5 class="hkfontsimple">Since your spotify profile doesn't have any display name, we need one from you:<h5>
+(no same name usernames!)
+</h5>
+</div></h5>
+<div align="center">
+<form action='/login' method='POST' id='newusername'>{% csrf_token %}
+	<input type= 'text' name='newusername' placeholder='Username!'>
+	
+	<button class="btn btn-outline-secondary" type='submit'> This is my username</button>
+</form>
+</div>
+</div>
+{% endblock %} 

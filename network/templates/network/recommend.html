@@ -1,0 +1,54 @@
+{% extends 'network/layout.html' %}
+
+{% block content %}
+
+
+<!-- script so I can highlight where I am in the headers from layout -->
+  <script type="text/javascript">
+    var headerrec = document.getElementById("recheader")
+    headerrec.setAttribute('class', 'nav-link active')
+  </script>
+
+
+
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4 align-self-center" align="middle">
+  <h2>Search music on Spotify</h2><h4>(Album or track)</h4>
+ 
+  <input type="text" class="form-control" style="width: 700px;" name="q" id="q" placeholder="Search..." data-provide="typeahead"/>
+  </div>
+</div>
+
+<div class="row"> <div class="col-4"></div>
+  <div class="col-4 align-self-center" id="displayrec" style='padding:5px; text-align: center;'> </div>
+   <div class="col-4"></div>
+</div>
+
+<div class="row">
+   <div class="col-4"></div>
+  <div class="col-4 align-self-center" id="sug" style='padding:5px; text-align: center;'>
+
+  
+<form action='/listento' id='sugform' name='sugform' method='POST'>
+   
+    {% csrf_token %}
+  
+  </div>
+   <div class="col-4"></div>
+</div>
+  <div id="genurl"></div>
+ <div class="col-4"></div>
+<div class="row">
+    <div class="col-4"></div>
+  <div class="col-4 align-self-center" id='btw' style="text-align: center"><h5>
+          (You become friends with people once they click the first link you give them, or vice-versa)</h5></div>
+      <div class="col-4"></div>
+ </div>
+
+
+    
+ 
+
+
+{% endblock %}

@@ -1,0 +1,185 @@
+body {
+ font-family: HK
+}
+
+h1{
+font-family: HKbold;
+font-size: 64px;
+letter-spacing: 2px
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  border-radius: 4px;
+  border: 1px solid #828282;
+}
+
+.hkfont{
+  font-family: HKbold;
+  letter-spacing: 2px;
+
+}
+
+.hkfonttable{
+  font-family: HKbold;
+  letter-spacing: 1px
+}
+
+.hkfontsimple{
+  font-family: HK;
+}
+
+caption{
+  font-family: HK;
+  
+}
+@font-face {
+  font-family: 'HKbold';
+  src: url("/static/spotify/fonts/HKgrotesk/HankenGrotesk-Bold.52921dca7bc8.otf")  format("truetype"),
+       local('HKbold');
+}
+
+@font-face {
+  font-family: 'HK';
+  src: url("/static/spotify/fonts/HKgrotesk/HankenGrotesk-Medium.42dbe2165585.otf")  format("truetype"),
+       local('HK');
+}
+
+
+p{
+ 
+
+}
+
+div.dataTables_length {
+  margin-right: 4em;
+  margin-left: 4em;
+}
+img {
+  
+}
+
+#headerpic{
+  border-radius: 50%;
+  width: auto;
+  height: 55px;
+}
+#spotimage{
+    /*Do not crop album artwork in any way.*/
+    width: 20%;
+    height: auto;
+    left: 0px;
+    right: 0px;
+}
+
+#topartist{
+    border-radius: 50%;
+    width: 22%;
+    height: auto;
+}
+
+#userimage{
+    border-radius: 55%;
+    width: 100px;
+    height: auto;
+}
+
+#tableimage{
+    border-radius: 55%;
+    width: 50px;
+    height: auto;
+}
+
+table{
+  .table-hover
+}
+
+.inline-block-child {
+  display: inline-block;
+}
+
+.typeahead,
+.tt-query,
+
+
+.typeahead {
+  position: relative;
+  background-color: #fff;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+
+.tt-menu
+{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1px;
+    max-height: 500px;
+    overflow-y: auto;
+    width: 700px;
+
+}
+
+.tt-suggestion {
+  border: 0.6px solid;
+  border-radius: 2px;
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+  background-color: white;
+  border-color: #868e96;
+  text-align: left;
+
+
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+}
+
+.tt-suggestion p {
+  margin: 0;
+  font-size: 18px;
+  font-family: Verdana;
+
+}
+
+.divcenterrec{
+  display: inline-block;
+  align-self: center;
+  padding: 2px;
+  margin: 7px;
+}
+.divrightrec{
+  display: inline-block;
+  align-self: center;
+  padding: 2px;
+  margin: 7px;
+  
+ 
+}
+.divleftrec{
+  display: inline-block;
+  padding: 2px;
+  margin: 7px;
+  
+}
+
+textarea { height: auto; }
+
+#genurl{
+  margin: 0 auto;
+  display: inline-block;
+}
