@@ -5,4 +5,4 @@ A website that uses the Spotify API (spotipy library) to improve the interactivi
 
 Check the website! https://recspotify.herokuapp.com
 
-[[https://github.com/keekoishere/reCommander/recmander tables.png|alt=tables]]
+https://github.com/keekoishere/reCommander/tables.png
